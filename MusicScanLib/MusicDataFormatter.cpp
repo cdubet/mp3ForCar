@@ -77,12 +77,12 @@ std::wstring FormatString(const std::wstring &source)
 	}
 	return formattedString;
 }
+
 void MusicDataFormatterC::Format(MusicDataC &data)
 {
-	//remove space, tab  . - _
-	//replace é è à ê
 	data.setTitle(FormatString(data.getTitle()));
-
+	data.setAlbum(FormatString(data.getAlbum()));
+	data.setArtist(FormatString(data.getArtist()));
 }
 
 } /* namespace MusicScan */
