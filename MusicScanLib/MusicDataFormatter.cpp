@@ -78,11 +78,12 @@ std::wstring FormatString(const std::wstring &source)
 	return formattedString;
 }
 
-void MusicDataFormatterC::Format(MusicDataC &data)
+MusicDataC & MusicDataFormatterC::Format(MusicDataC &data)
 {
 	data.setTitle(FormatString(data.getTitle()));
 	data.setAlbum(FormatString(data.getAlbum()));
 	data.setArtist(FormatString(data.getArtist()));
+	return data;
 }
 
 } /* namespace MusicScan */

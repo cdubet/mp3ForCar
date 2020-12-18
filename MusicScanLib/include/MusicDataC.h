@@ -10,6 +10,10 @@ namespace MusicScan
 class MusicDataC
 {
 public:
+	MusicDataC():m_track(0)
+	{
+	}
+
 	std::wstring getAlbum() const
 	{
 		return m_album;
@@ -59,14 +63,21 @@ public:
 	{
 		m_track = mTrack;
 	}
-
+	bool operator==( const MusicDataC& rhs) const { return compare(rhs)==0 ; }
+	bool operator!=( const MusicDataC& rhs) const { return compare(rhs)!=0 ; }
+	bool operator< ( const MusicDataC& rhs) const { return compare(rhs) <  0; }
+	bool operator> ( const MusicDataC& rhs) const { return compare(rhs) >  0; }
+	bool operator<=( const MusicDataC& rhs) const { return compare(rhs) <= 0; }
+	bool operator>=( const MusicDataC& rhs) const { return compare(rhs) >= 0; }
 private:
+
 	boost::filesystem::path m_filename;
 	std::wstring m_artist;
 	std::wstring m_title;
 	std::wstring m_album;
 	unsigned int m_track;
 
+	int compare( const MusicDataC& rhs) const;
 };
 
 } /* namespace MusicScan */

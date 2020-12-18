@@ -8,7 +8,7 @@ namespace MusicScan
 class MusicDataFormatterC
 {
 public:
-	static void Format(MusicDataC &data);
+	static MusicDataC & Format(MusicDataC &data);
 };
 
 } /* namespace MusicScan */
