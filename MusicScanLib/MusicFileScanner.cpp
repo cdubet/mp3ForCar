@@ -1,6 +1,7 @@
 #include <TagExtractor.h>
 #include <MusicDataFormatter.h>
 #include <MusicFileScanner.h>
+#include <iostream>
 
 namespace MusicScan
 {
@@ -24,20 +25,26 @@ bool MusicFileScannerC::Scan(std::vector<MusicDataC> &musicData)
 	return Scan(musicData,m_sourcePath);
 }
 
-bool MusicFileScannerC::Scan(std::vector<MusicDataC> &musicData,const boost::filesystem::path & dir)
+bool MusicFileScannerC::Scan(std::vector<MusicDataC> &musicData,const boost::filesystem::path & dirToScan)
 {
-	boost::filesystem::directory_iterator end_itr; // default construction yields past-the-end
-	for (  boost::filesystem::directory_iterator itr( m_sourcePath );
+	if ( !boost::filesystem::exists( dirToScan ) )
+	{
+		return false;
+	}
+
+	boost::filesystem::directory_iterator end_itr;
+	for (  boost::filesystem::directory_iterator itr( dirToScan );
 			itr != end_itr;
 			++itr )
 	{
 		if (  boost::filesystem::is_directory(itr->status()) )
 		{
+			printf("dir %s\n",itr->path().string().c_str());
 			Scan(musicData, itr->path());//TODO manage error case
 		}
 		else
 		{
-			printf("%s\n",itr->path().string().c_str());
+			printf("found %s\n",itr->path().string().c_str());
 			boost::optional<MusicDataC> musicTagData=TagExtractorC::extract(itr->path());
 			if (musicTagData)
 			{
@@ -46,6 +53,7 @@ bool MusicFileScannerC::Scan(std::vector<MusicDataC> &musicData,const boost::fil
 		}
 
 	}
+
 	return true;
 }
 

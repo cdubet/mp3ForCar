@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "VorbisToMp3.h"
+#include "Mp3ToMp3.h"
 #include <string>
 
 
@@ -17,9 +18,14 @@ TEST(MusicConverterTest, whenFileIsOggReturnTrue)
 	const bool res=converter.Convert(sourcePath,"anything");
 	EXPECT_TRUE(res);
 }
-/*
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+
+TEST(MusicConverterTest, whenFileMp3ThenFileIsCopied)
+{
+	boost::filesystem::path sourcePath("/home/christian/tmp/MUSIQUE_AUTO_SRC/McKennit/Celtic - Loreena McKennitt - Irish  Ballad.mp3");
+	boost::filesystem::path destPath("/home/christian/tmp/MUSIQUE_AUTO/CELTICWOMAN_BELIEVE_14_AWOMANSHEART.mp3");
+
+	MusicScan::Mp3ToMp3C converter;
+	const bool res=converter.Convert(sourcePath,destPath);
+	EXPECT_TRUE(res);
 }
-*/
+

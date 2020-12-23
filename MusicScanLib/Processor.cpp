@@ -76,6 +76,13 @@ boost::filesystem::path ProcessorC::BuildDestinationFilename(const boost::filesy
 		newFileNameWithoutExtension+=SEPARATOR;
 		newFileNameWithoutExtension+=musicData.getTitle();
 	}
+	//remove non ascii char
+
+	newFileNameWithoutExtension.erase(std::remove_if(
+			newFileNameWithoutExtension.begin(),
+			newFileNameWithoutExtension.end(),
+			[](unsigned char c) {if (c > '0' && c<='z') return false; else return true;} ),
+			newFileNameWithoutExtension.end());
 	boost::filesystem::path newFileName= dest/ boost::filesystem::path(newFileNameWithoutExtension+L".mp3");
 	return newFileName;
 }

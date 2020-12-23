@@ -9,14 +9,13 @@ bool Mp3ToMp3C::Convert(const boost::filesystem::path & sourceFile,const boost::
 {
 	boost::system::error_code ec;
 	boost::filesystem::copy_file(sourceFile,dest,ec);
-	if (ec.value()==0 )
-	{
-		printf("%s ->%s\n",sourceFile.string().c_str(),dest.string().c_str());
-	}
-	else
+	if (ec.value()!=0 )
 	{
 		//TODO manage error case
-		printf("FAILED %s ->%s\n",sourceFile.string().c_str(),dest.string().c_str());
+		printf("copy FAILED [%s] ->[%s] err=%d\n",
+				sourceFile.string().c_str(),
+				dest.string().c_str(),
+				ec.value());
 		return false;
 	}
 	return true;

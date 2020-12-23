@@ -1,6 +1,7 @@
 #include "VorbisToMp3.h"
 #include "ffmpegcpp.h"
 #include <memory>
+#include <iostream>
 
 namespace MusicScan
 {
@@ -13,6 +14,7 @@ bool VorbisToMp3C::ConvertToMp3(const boost::filesystem::path & source,const boo
 {
 	try
 	{
+		std::cout<<source<<std::endl;
 		ffmpegcpp::Muxer* muxer = new ffmpegcpp::Muxer(dest.c_str());
 		ffmpegcpp::AudioCodec* codec = new ffmpegcpp::AudioCodec(AV_CODEC_ID_MP3);
 		ffmpegcpp::AudioEncoder* encoder = new ffmpegcpp::AudioEncoder(codec, muxer);
@@ -26,16 +28,18 @@ bool VorbisToMp3C::ConvertToMp3(const boost::filesystem::path & source,const boo
 	}
 	catch (ffmpegcpp::FFmpegException & e)
 	{
+		std::cout<<"failing "<<source<<e.what()<<std::endl;
 		return false;
 	}
 	return true;
 }
+
 bool VorbisToMp3C::Convert(const boost::filesystem::path & source,const boost::filesystem::path & dest )
 {
 	auto extension=source.extension();
 	if (extension.string().compare(".ogg")==0)
 	{
-		return true;
+		return ConvertToMp3(source,dest);
 	}
 	return false;
 }
