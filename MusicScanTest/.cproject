@@ -38,6 +38,14 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.2074748649" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.link.option.libs.1102223694" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="MusicScanLib"/>
+									<listOptionValue builtIn="false" value="ffmpegCppLib"/>
+									<listOptionValue builtIn="false" value="avformat"/>
+									<listOptionValue builtIn="false" value="avcodec"/>
+									<listOptionValue builtIn="false" value="avutil"/>
+									<listOptionValue builtIn="false" value="avdevice"/>
+									<listOptionValue builtIn="false" value="swscale"/>
+									<listOptionValue builtIn="false" value="swresample"/>
+									<listOptionValue builtIn="false" value="avfilter"/>
 									<listOptionValue builtIn="false" value="boost_filesystem"/>
 									<listOptionValue builtIn="false" value="tag"/>
 									<listOptionValue builtIn="false" value="boost_system"/>
@@ -45,7 +53,8 @@
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.link.option.paths.786391542" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" useByScannerDiscovery="false" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MusicScanLib/Debug}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu/"/>
+									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/ffmpeg-cppFork/source/ffmpeg-cpp/ffmpeg-cpp}&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.pthread.788540913" name="Support for pthread (-pthread)" superClass="gnu.cpp.link.option.pthread" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1430594220" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
